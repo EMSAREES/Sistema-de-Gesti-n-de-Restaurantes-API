@@ -2,14 +2,16 @@ import axios, { AxiosError } from "axios";
 import { Meal, ApiResponse, MealDBRaw } from "../types/meal";
 import dotenv from "dotenv";
 
+
 dotenv.config();
 
 const BASE_URL = process.env.URL_THEMEALDB;
 
+
 export const searchMeals  = async (name: string): Promise<Meal[]>  => {
-    if (!name || name.trim().length === 0) {
-        throw new Error("El nombre es obligatorio.");
-    }
+    // if (!name || name.trim().length === 0) {
+    //     throw new Error("El nombre es obligatorio.");
+    // }
 
     try{
 

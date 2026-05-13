@@ -4,22 +4,13 @@ import { searchMeals } from "../service/meal.service";
 
 export const searchMealsController = async (req: Request, res: Response) => {
     try{
-        const { name } = req.query;
-        const meals = await searchMeals(name as string);
+        const name  = req.query.name as string;
+        const meals = await searchMeals(name);
         
         res.status(HTTP_STATUS_CODES.OK).json({ results: meals });
     }
     catch (error){
-        if (error instanceof Error) {
-            if (error.message === "El nombre es obligatorio.") {
-                return res.status(HTTP_STATUS_CODES.BAD_REQUEST)
-                    .json({code: HTTP_STATUS_CODES.BAD_REQUEST, error: error.message });
-            }
-            return res.status(HTTP_STATUS_CODES.SERVICE_UNAVAILABLE)
-                .json({code: HTTP_STATUS_CODES.SERVICE_UNAVAILABLE,  error: error.message });
-        }
-
-        res.status(HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR)
-            .json({code: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR, error: "Error inesperado." });
+        const message = error instanceof Error ? error.message : "Error inesperado.";
+        res.status(HTTP_STATUS_CODES.SERVICE_UNAVAILABLE).json({ error: message });
     }
 }
