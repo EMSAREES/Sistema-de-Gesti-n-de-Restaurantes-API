@@ -12,19 +12,28 @@ export const searchMeals  = async (name: string): Promise<Meal[]>  => {
     }
 
     try{
+
+        // consumir la api con axios
         const response = await axios.get<ApiResponse>(
             `${BASE_URL}search.php?s=${name}`
         );
         
-        if (!response.data.results || response.data.results.length === 0) {
-            throw new Error(`No se encontraron comidas con el nombre: ${name}`);
+        // cuando no encuentre resultado lo mande vecio
+        if (!response.data.meals) {
+            return [];
         }
 
-        return response.data.results;
+        // para simplificar la respuesta y hacer que funcione 
+        return response.data.meals.map((meal: MealDBRaw): Meal => ({
+            id: meal.idMeal,
+            name: meal.strMeal,
+            category: meal.strCategory,
+            cuisine: meal.strArea
+        }));
 
     }catch (error){
         if (error instanceof AxiosError) {
-            throw new Error("Error al conectar con TheMealDB.");
+            throw new Error("Error al conectar con la api TheMealDB.");
         }
         throw error;
 
