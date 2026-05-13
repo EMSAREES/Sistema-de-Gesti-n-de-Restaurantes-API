@@ -18,7 +18,7 @@ model Restaurant {
   address String
   city String
   cuisineType String
-  rating Int
+  rating Float
   isActive Boolean @default(false)
   createdAt DateTime @default(now())
 }
