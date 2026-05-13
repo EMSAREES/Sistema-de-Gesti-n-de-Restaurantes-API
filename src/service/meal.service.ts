@@ -22,7 +22,12 @@ export const searchMeals  = async (name: string): Promise<Meal[]>  => {
         
         // cuando no encuentre resultado lo mande vecio
         if (!response.data.meals) {
-            return [];
+               return [{
+                    id: "0",
+                    name: "No hay platillo disponible",
+                    category: "",
+                    cuisine: ""
+                }];
         }
 
         // para simplificar la respuesta y hacer que funcione 
