@@ -13,13 +13,13 @@ export const searchMealsController = async (req: Request, res: Response) => {
         if (error instanceof Error) {
             if (error.message === "El nombre es obligatorio.") {
                 return res.status(HTTP_STATUS_CODES.BAD_REQUEST)
-                    .json({ error: error.message });
+                    .json({code: HTTP_STATUS_CODES.BAD_REQUEST, error: error.message });
             }
             return res.status(HTTP_STATUS_CODES.SERVICE_UNAVAILABLE)
-                .json({ error: error.message });
+                .json({code: HTTP_STATUS_CODES.SERVICE_UNAVAILABLE,  error: error.message });
         }
 
         res.status(HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR)
-            .json({ error: "Error inesperado." });
+            .json({code: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR, error: "Error inesperado." });
     }
 }
