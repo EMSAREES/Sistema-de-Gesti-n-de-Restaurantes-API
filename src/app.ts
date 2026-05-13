@@ -5,6 +5,9 @@ import cors from "cors";
 import type { Request, Response } from "express";
 import router from "./router";
 
+import "./database/db";
+
+
 const app = express();
 
 app.use(cors());
