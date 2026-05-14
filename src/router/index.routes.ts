@@ -1,5 +1,7 @@
 import { Router } from 'express';
+
 import mealRouter from './meal.routes';
+import restaurantRouter from './restaurant.routes';
 
 
 const router = Router();
@@ -9,5 +11,7 @@ router.get('/', (req, res) => {
 });
 
 router.use("/meals", mealRouter);
+
+router.use("/restaurants", restaurantRouter);
 
 export default router;
