@@ -13,6 +13,7 @@ API REST construida con Node.js, Express, TypeScript y Prisma ORM  que gestiona 
 - Zod 4 — validación de datos
 - dotenv — variables de entorno
 - ts-node-dev — desarrollo con hot-reload
+- Vitest - para los test
 
 
 -------------------------------------------------------
