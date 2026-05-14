@@ -48,7 +48,7 @@ npm run prisma:migrate
 ## Ejecución
  
 ```bash
-# Modo desarrollo (hot-reload)
+# Modo desarrollo 
 npm run dev
  
 # Compilar a JavaScript
@@ -56,6 +56,19 @@ npm run build
  
 # Modo producción
 npm run start
+```
+
+## Ejecución
+ 
+```bash
+# Correr una vez
+npm test
+
+# Modo watch (se re-ejecuta al guardar)
+npm run test:watch
+
+# Con cobertura de código
+npm run test:coverage
 ```
 -------------------------------------------------------
 ## Endpoints
