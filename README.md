@@ -20,7 +20,7 @@ API REST construida con Node.js, Express, TypeScript y Prisma ORM  que gestiona 
  
 ```bash
 # 1. Clonar el repositorio
-git clone <tu-repo>
+git clone https://github.com/EMSAREES/Sistema-de-Gesti-n-de-Restaurantes-API.git
 cd sistema-de-gestion-de-restaurantes-api
  
 # 2. Instalar dependencias
