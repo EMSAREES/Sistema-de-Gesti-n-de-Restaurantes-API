@@ -8,7 +8,7 @@ export interface RestaurantCreate {
     isActive: boolean;
 }
 
-// Listar restaurantes por ciudad o activo
+// Listar restaurante por ciudad o activo
 export interface RestaurantFilter{
     id: number;
     name: string;
@@ -18,11 +18,12 @@ export interface RestaurantFilter{
     isActive: boolean;
 }
 
-// Listar restaurante por id
-export interface RestaurantFilters {
-    city?: string;
-    isActive?: boolean;
-}
+
+
+
+
+
+// Listar restaurantes por id
 
 export interface RestaurantResponse  {
     id: number;
