@@ -19,13 +19,8 @@ export interface RestaurantFilter{
 }
 
 
-
-
-
-
 // Listar restaurantes por id
-
-export interface RestaurantResponse  {
+export interface RestaurantFilterById  {
     id: number;
     name: string;
     address: string;
