@@ -14,7 +14,7 @@ API REST construida con Node.js, Express, TypeScript y Prisma ORM  que gestiona 
 - dotenv — variables de entorno
 - ts-node-dev — desarrollo con hot-reload
 - Vitest - para los test
-
+- Swagger - para documentar las rutas
 
 -------------------------------------------------------
 ## Instalación
@@ -58,6 +58,9 @@ npm run build
 # Modo producción
 npm run start
 ```
+*** debera imprimir: ***
+http://localhost:3000/api
+http://localhost:3000/api-docs
 
 ## Ejecución
  
