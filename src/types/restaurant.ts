@@ -18,7 +18,6 @@ export interface RestaurantFilter{
     isActive: boolean;
 }
 
-
 // Listar restaurantes por id
 export interface RestaurantFilterById  {
     id: number;
