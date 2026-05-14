@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createRestaurantController, getRestaurantsController } from "../controller/restaurant.controller";
+import { createRestaurantController, getRestaurantsController, getRestaurantsByIdController } from "../controller/restaurant.controller";
 
 import { schemaValidation } from "../middlewares/shemaValidate.middleware";
 import { createRestaurantSchema } from "../schemas/restaurant.schema"; 
@@ -11,5 +11,9 @@ restaurantRouter.post("/", schemaValidation(createRestaurantSchema), createResta
 
 // GET /api/restaurants?city={ciudad}&isActive={true|false}
 restaurantRouter.get("/", getRestaurantsController);
+
+// GET /api/restaurants/{id}
+restaurantRouter.get("/:id", getRestaurantsByIdController);
+
 
 export default restaurantRouter;

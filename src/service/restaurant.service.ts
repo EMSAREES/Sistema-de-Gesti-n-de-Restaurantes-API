@@ -1,5 +1,5 @@
 import prisma from "../database/prismaClient";
-import { RestaurantCreate, RestaurantFilter } from "../types/restaurant";
+import { RestaurantCreate, RestaurantFilter, RestaurantFilterById} from "../types/restaurant";
 
 export const createRestaurant = async (data: RestaurantCreate) => {
     try{
@@ -39,3 +39,34 @@ export const getRestaurants = async (city?: string, isActive?: boolean): Promise
         throw error;
     }
 };
+
+export const getRestaurantsById = async (id: number): Promise<RestaurantFilterById | null> => {
+    try{
+        const restaurant = await prisma.restaurant.findUnique({
+            where: { id },
+            select: {
+                id: true,
+                name: true,
+                address: true,
+                city: true,
+                cuisineType: true,
+                rating: true,
+                isActive: true,
+                createdAt: true
+            }
+        });
+
+        if (!restaurant) {
+            return null;
+        }   
+
+        return restaurant;
+    }catch(error){
+        if (error instanceof Error) {
+            throw new Error("Error al obtener el restaurante.");
+        }
+        throw error;
+    }
+};
+
+
