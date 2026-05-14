@@ -11,3 +11,28 @@ export const createRestaurantSchema = z.object({
     })
 });
 
+export const getRestaurantsSchema = z.object({
+    query: z.object({
+        city: z
+            .string()
+            .optional(), 
+    }),
+});
+
+export const getRestaurantByIdSchema = z.object({
+    params: z.object({
+        id: z
+            .string()
+            .regex(/^\d+$/, "El id debe ser un número entero.")
+            .transform((val) => Number(val)), // convierte a número
+    }),
+});
+
+export const DeleteRestaurant = z.object({
+    params: z.object({
+        id: z
+            .string()
+            .regex(/^\d+$/, "El id debe ser un número entero.")
+            .transform((val) => Number(val)), // convierte a número
+    }),
+});
