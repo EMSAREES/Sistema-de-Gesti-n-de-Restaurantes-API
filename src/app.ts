@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import path from "path";                              
 import cors from "cors";   
 import type { Request, Response } from "express";
-import router from "./router";
+import router from "./router/index.routes";
 
 // import "./database/db";
 
