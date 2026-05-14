@@ -14,7 +14,7 @@ export const schemaValidation =
         next();
     } catch (error) {
         if (error instanceof ZodError) {
-            return res.status(400).json(
+            return res.status(HTTP_STATUS_CODES.BAD_REQUEST).json(
                 error.issues.map((issue) => ({
                     // path: issue.path,
                     code: HTTP_STATUS_CODES.BAD_REQUEST,

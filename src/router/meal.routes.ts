@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { searchMealsController } from "../controller/meal.controller";
+
 import { schemaValidation } from "../middlewares/shemaValidate.middleware";
 import { searchMealSchema } from "../schemas/meal.schema"; 
 

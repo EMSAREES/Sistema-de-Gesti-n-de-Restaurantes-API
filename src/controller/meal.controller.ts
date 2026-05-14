@@ -7,7 +7,7 @@ export const searchMealsController = async (req: Request, res: Response) => {
         const name  = req.query.name as string;
         const meals = await searchMeals(name);
         
-        res.status(HTTP_STATUS_CODES.OK).json({ results: meals });
+        res.status(HTTP_STATUS_CODES.CREATED).json({ results: meals });
     }
     catch (error){
         const message = error instanceof Error ? error.message : "Error inesperado.";
