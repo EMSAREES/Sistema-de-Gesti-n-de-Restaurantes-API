@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createRestaurant, getRestaurants, getRestaurantsById, updateRestaurant, deleteRestaurant } from "../service/restaurant.service";
+import { createRestaurant, getRestaurants, getRestaurantsById, updateRestaurant, deleteRestaurant, getMenuSuggestions } from "../service/restaurant.service";
 import { HTTP_STATUS_CODES } from "../constants/stateCodes";
 
 export const createRestaurantController = async (req: Request, res: Response) => {
@@ -93,5 +93,31 @@ export const deleteRestaurantController = async (req: Request, res: Response) =>
     } catch (error) {
         const message = error instanceof Error ? error.message : "Error inesperado.";
         res.status(HTTP_STATUS_CODES.SERVICE_UNAVAILABLE).json({ error: message });
+    }
+};
+
+
+// parte donde se consume los dos Endpoint 
+export const getMenuSuggestionsController = async (req: Request, res: Response) => {
+    try {
+        const id = Number(req.params.id);
+
+        if (isNaN(id)) {
+            return res.status(HTTP_STATUS_CODES.BAD_REQUEST)
+                .json({ error: "El id debe ser un número válido." });
+        }
+
+        const result = await getMenuSuggestions(id);
+
+        if (!result) {
+            return res.status(HTTP_STATUS_CODES.NOT_FOUND)
+                .json({ error: "Restaurante no encontrado." });
+        }
+
+        res.status(HTTP_STATUS_CODES.OK).json(result);
+
+    } catch (error) {
+        const message = error instanceof Error ? error.message : "Error inesperado.";
+        res.status(HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR).json({ error: message });
     }
 };
