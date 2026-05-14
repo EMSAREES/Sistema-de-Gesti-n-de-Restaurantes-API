@@ -1,5 +1,5 @@
 import prisma from "../database/prismaClient";
-import { RestaurantCreate, RestaurantFilter, RestaurantFilterById} from "../types/restaurant";
+import { RestaurantCreate, RestaurantFilter, RestaurantFilterById, RestaurantUpdate} from "../types/restaurant";
 
 export const createRestaurant = async (data: RestaurantCreate) => {
     try{
@@ -21,7 +21,7 @@ export const getRestaurants = async (city?: string, isActive?: boolean): Promise
         return await prisma.restaurant.findMany({
             where: {
                 ...(city ? { city } : {}),
-                ...(typeof isActive === "boolean" ? { isActive } : {}),
+                ...(typeof isActive === "boolean" ? { isActive } : {}), 
             },
             select: {
                 id: true,
@@ -68,5 +68,20 @@ export const getRestaurantsById = async (id: number): Promise<RestaurantFilterBy
         throw error;
     }
 };
+
+export const updateRestaurant = async (id: number, data: RestaurantUpdate): Promise<RestaurantFilterById | null>  => {
+    try{
+        return await prisma.restaurant.update({
+            where: { id },
+            data
+        });
+    }catch(error){
+        if (error instanceof Error) {
+            throw new Error("Error al actualizar el restaurante.");
+        }
+        throw error;
+    }
+};
+
 
 
