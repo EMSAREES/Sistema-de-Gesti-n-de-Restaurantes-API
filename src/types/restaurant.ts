@@ -1,17 +1,15 @@
 //  Crear restaurante
 export interface RestaurantCreate {
-    id: number;
     name: string;
     address: string;
     city: string;
     cuisineType: string;
     rating: number;
     isActive: boolean;
-    createdAt?: Date;
 }
 
 // Listar restaurantes por ciudad o activo
-export interface RestaurantList {
+export interface RestaurantFilter{
     id: number;
     name: string;
     city: string;
@@ -21,7 +19,12 @@ export interface RestaurantList {
 }
 
 // Listar restaurante por id
-export interface RestaurantDetail {
+export interface RestaurantFilters {
+    city?: string;
+    isActive?: boolean;
+}
+
+export interface RestaurantResponse  {
     id: number;
     name: string;
     address: string;
@@ -31,6 +34,8 @@ export interface RestaurantDetail {
     isActive: boolean;
     createdAt: Date;
 }
+
+
 
 // actualizar restaurante
 export interface RestaurantUpdate {
