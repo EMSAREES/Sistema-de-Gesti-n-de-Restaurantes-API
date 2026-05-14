@@ -34,3 +34,9 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# prisma
+prisma/*.db
+prisma/*.db-journal
+prisma/config.ts
+prisma/migrations/
