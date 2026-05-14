@@ -208,7 +208,7 @@ describe("GET /api/restaurants/:id/menu-suggestions", () => {
         // Corregimos la creación agregando los campos obligatorios
         const restaurant = await prisma.restaurant.create({
             data: {
-                id: 4, 
+                id: 1, 
                 name: "Test Restaurant",
                 cuisineType: "Italian",
                 address: "Calle Falsa 123", // Campo requerido según el error
