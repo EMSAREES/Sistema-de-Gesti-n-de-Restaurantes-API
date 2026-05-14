@@ -1,5 +1,6 @@
 import prisma from "../database/prismaClient";
 import { RestaurantCreate, RestaurantFilter, RestaurantFilterById, RestaurantUpdate} from "../types/restaurant";
+import { searchMeals } from "./meal.service";
 
 export const createRestaurant = async (data: RestaurantCreate) => {
     try{
@@ -110,3 +111,37 @@ export const deleteRestaurant = async (id: number): Promise<boolean> => {
 };
 
 
+// Endpoint Combinado (Bonus) a qui se usan los dos esta va consumir el service de meal tambein
+export const getMenuSuggestions = async (id: number) => {
+    try {
+        // Busca el restaurante por su id primero
+        const restaurant = await prisma.restaurant.findUnique({
+            where: { id },
+            select: {
+                id: true,
+                name: true,
+                cuisineType: true
+            }
+        });
+
+        // por si no existe
+        if (!restaurant) {
+            return null;
+        }
+
+        // Buscar sugerencia del menu con la api 
+        const menuSuggestions = await searchMeals(restaurant.cuisineType);
+
+        
+        return {
+            restaurant,
+            menuSuggestions
+        };
+
+    } catch (error) {
+        if (error instanceof Error) {
+            throw new Error("Error al obtener sugerencias de menú.");
+        }
+        throw error;
+    }
+};
