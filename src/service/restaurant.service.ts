@@ -83,5 +83,30 @@ export const updateRestaurant = async (id: number, data: RestaurantUpdate): Prom
     }
 };
 
+export const deleteRestaurant = async (id: number): Promise<boolean> => {
+    try{
+        // busacmos primero para ver si existe 
+        const restaurantExists =
+            await prisma.restaurant.findUnique({
+                where: { id }
+            });
+
+        if (!restaurantExists) {
+            return false;
+        }
+
+        await prisma.restaurant.delete({
+            where: { id }
+        });
+
+        return true;
+
+    }catch(error){
+        if (error instanceof Error) {
+            throw new Error("Error al eliminar el restaurante.");
+        }
+        throw error;
+    }
+};
 
 
