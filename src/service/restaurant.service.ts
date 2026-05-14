@@ -1,5 +1,5 @@
 import prisma from "../database/prismaClient";
-import { RestaurantCreate } from "../types/restaurant";
+import { RestaurantCreate, RestaurantFilter } from "../types/restaurant";
 
 export const createRestaurant = async (data: RestaurantCreate) => {
     try{
@@ -11,6 +11,30 @@ export const createRestaurant = async (data: RestaurantCreate) => {
     }catch(error){
         if (error instanceof Error) {
             throw new Error("Error al crear el restaurante.");
+        }
+        throw error;
+    }
+};
+
+export const getRestaurants = async (city?: string, isActive?: boolean): Promise<RestaurantFilter[]> => {
+    try{
+        return await prisma.restaurant.findMany({
+            where: {
+                ...(city ? { city } : {}),
+                ...(typeof isActive === "boolean" ? { isActive } : {}),
+            },
+            select: {
+                id: true,
+                name: true,
+                city: true,
+                cuisineType: true,
+                rating: true,
+                isActive: true
+            }
+        });
+    }catch(error){
+        if (error instanceof Error) {
+            throw new Error("Error al obtener los restaurantes.");
         }
         throw error;
     }
