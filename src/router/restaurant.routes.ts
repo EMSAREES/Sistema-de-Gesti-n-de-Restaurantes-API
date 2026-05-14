@@ -1,10 +1,13 @@
 import { Router } from "express";
-import { createRestaurantController, getRestaurantsController, getRestaurantsByIdController, updateRestaurantController, deleteRestaurantController } from "../controller/restaurant.controller";
+import { createRestaurantController, getRestaurantsController, getRestaurantsByIdController, updateRestaurantController, deleteRestaurantController, getMenuSuggestionsController } from "../controller/restaurant.controller";
 
 import { schemaValidation } from "../middlewares/shemaValidate.middleware";
 import { createRestaurantSchema } from "../schemas/restaurant.schema"; 
 
 const restaurantRouter = Router();
+
+// GET /api/restaurants/{id}/menu-suggestions
+restaurantRouter.get("/:id/menu-suggestions", getMenuSuggestionsController);
 
 // POST /api/restaurants
 restaurantRouter.post("/", schemaValidation(createRestaurantSchema), createRestaurantController);
